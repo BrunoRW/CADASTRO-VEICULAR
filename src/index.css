@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    text-decoration: none;
+    font-family: Alata, sans-serif;
+    /*user-select: normal;*/
+    border: none;
+    font-weight: normal;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    background: #FAFAFA;
+}

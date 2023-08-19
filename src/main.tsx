@@ -1,26 +1,25 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import './index.css';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Dash from './pages/dashboard';
+import NotFound from './pages/notfound';
+import { isAuth } from './auth';
 
-import Dash from './pages/dashboard.tsx';
+const AppRouter = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={isAuth() ? <Navigate to="/dashboard" /> : <App />} />
+      <Route path="/dashboard" element={isAuth() ? <Dash /> : <Navigate to="/" />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  </BrowserRouter>
+);
 
-const logged = localStorage.token ? true : false;
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App/>
-  },
-  {
-    path: "/dashboard",
-    element: logged ? <Dash/> : <App/>
-  }
-])
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AppRouter />
   </React.StrictMode>,
-)
+  document.getElementById('root')
+);

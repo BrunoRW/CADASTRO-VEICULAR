@@ -1,0 +1,1 @@
+export const isAuth = () => {return localStorage.token ? true : false};

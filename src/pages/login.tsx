@@ -56,10 +56,6 @@ export default function Login() {
         })
     }
 
-    // log cred 
-    // "brunowotzki@dotelematics.com"
-    // M@r12345
-
 
     return (
     <>

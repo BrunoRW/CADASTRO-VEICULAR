@@ -1,16 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Dash from './pages/dashboard';
-import NotFound from './pages/notfound';
+
+
+// Global style 
+import './index.css';
+
+// Authentication
 import { isAuth } from './auth';
+
+// Entry 
+import App from './App';
+
+// Pages 
+import Dash from './pages/dashboard';
+import AddVehicle from './pages/add';
+import NotFound from './pages/notfound';
 
 const AppRouter = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/" element={isAuth() ? <Navigate to="/dashboard" /> : <App />} />
+      <Route path="/add" element={isAuth() ? <AddVehicle /> : <Navigate to="/" />} />
       <Route path="/dashboard" element={isAuth() ? <Dash /> : <Navigate to="/" />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
